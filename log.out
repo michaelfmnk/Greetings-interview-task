@@ -1,0 +1,20 @@
+
+2018-03-27 20:30:32,580  INFO com.michaelfmnk.greeting.Main:14 - ### START ###
+2018-03-27 20:30:32,607  INFO com.michaelfmnk.greeting.Main:28 - accepted data: { city: london, lang: null, tz: gmt+10}
+2018-03-27 20:30:32,614  INFO com.michaelfmnk.greeting.HelloMessageProvider:22 - language was not set; system default is en
+2018-03-27 20:30:32,615  INFO com.michaelfmnk.greeting.HelloMessageProvider:30 - language: en
+2018-03-27 20:30:32,616  INFO com.michaelfmnk.greeting.HelloMessageProvider:38 - dayPart in gmt+10 is NIGHT
+2018-03-27 20:30:32,617  INFO com.michaelfmnk.greeting.HelloMessageProvider:44 - final message: Good Night, London!
+2018-03-27 20:30:32,619  INFO com.michaelfmnk.greeting.Main:35 - ### END ###
+2018-03-27 20:30:54,122  INFO com.michaelfmnk.greeting.Main:14 - ### START ###
+2018-03-27 20:30:54,133  INFO com.michaelfmnk.greeting.Main:28 - accepted data: { city: new_york, lang: ru, tz: null}
+2018-03-27 20:30:54,137  INFO com.michaelfmnk.greeting.HelloMessageProvider:30 - language: ru
+2018-03-27 20:30:54,145  WARN com.michaelfmnk.greeting.HelloMessageProvider:41 - time zone not found; searching time zone for city: New_york
+2018-03-27 20:30:54,146  INFO com.michaelfmnk.greeting.HelloMessageProvider:44 - final message: Добрый день, New york!
+2018-03-27 20:30:54,146  INFO com.michaelfmnk.greeting.Main:35 - ### END ###
+2018-03-27 20:31:13,119  INFO com.michaelfmnk.greeting.Main:14 - ### START ###
+2018-03-27 20:31:13,129  INFO com.michaelfmnk.greeting.Main:28 - accepted data: { city: kiev, lang: en, tz: null}
+2018-03-27 20:31:13,134  INFO com.michaelfmnk.greeting.HelloMessageProvider:30 - language: en
+2018-03-27 20:31:13,160  WARN com.michaelfmnk.greeting.HelloMessageProvider:41 - time zone not found; searching time zone for city: Kiev
+2018-03-27 20:31:13,161  INFO com.michaelfmnk.greeting.HelloMessageProvider:44 - final message: Good Evening, Kiev!
+2018-03-27 20:31:13,161  INFO com.michaelfmnk.greeting.Main:35 - ### END ###

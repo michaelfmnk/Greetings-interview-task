@@ -7,9 +7,10 @@ import java.util.TimeZone;
 public class TimeZoneUtils {
 
     public static TimeZone getTimeZoneForCity(String city) throws CityNotFoundException {
+        city = city.toLowerCase();
         for (String id:
                 TimeZone.getAvailableIDs()) {
-            if (id.toLowerCase().matches("\\/"+city+"$")){
+            if (id.toLowerCase().matches("(.*)(\\/)"+city+"$")){
                 return TimeZone.getTimeZone(id);
             }
         }

@@ -17,23 +17,32 @@ public class HelloMessageProvider {
 
 
     public String getMessage(String localeStr, String timeZoneStr){
-        localeStr = (localeStr==null) ? System.getProperty("user.language") : localeStr;
+        if (localeStr == null) {
+            localeStr = System.getProperty("user.language");
+            log.info("language was not set; system default is " +localeStr);
+        } else {
+            localeStr = localeStr;
+        }
         Locale locale;
         DayPart dayPart;
         try{
             locale = Locale.valueOf(localeStr.toUpperCase());
+            log.info("language: "+localeStr);
         }catch(IllegalArgumentException e){
             locale = Locale.EN;
-            log.warn("language not found; english was selected");
+            log.warn("language "+localeStr+" not found; english was selected");
         }
 
         try{
             dayPart = DayPart.getDayPart(TimeZone.getTimeZone(timeZoneStr.toUpperCase()));
+            log.info("dayPart in "+ timeZoneStr + " is " +dayPart);
         }catch (Exception e){
             dayPart = DayPart.getDayPart(city);
             log.warn("time zone not found; searching time zone for city: "+ city);
         }
-        return formMassage(getGreetingFromResource(dayPart, locale), city);
+        String msg = formMassage(getGreetingFromResource(dayPart, locale), city);
+        log.info("final message: "+ msg);
+        return msg;
     }
 
     private String getGreetingFromResource(DayPart dayPart, Locale locale){
