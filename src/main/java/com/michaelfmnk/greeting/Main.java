@@ -2,7 +2,6 @@ package com.michaelfmnk.greeting;
 import org.apache.commons.cli.*;
 import org.apache.log4j.Logger;
 
-import java.util.TimeZone;
 
 public class Main {
     private static Logger log = Logger.getLogger(Main.class.getName());

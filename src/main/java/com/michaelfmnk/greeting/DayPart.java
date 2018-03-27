@@ -36,7 +36,7 @@ public enum DayPart {
     }
 
     private static DayPart getDayPart(int hours){
-        if (hours > 24 || hours < 0) throw new HourNotPossibleException();
+        if (hours > 24 || hours < 0) throw new HourNotPossibleException("hour not possible");
 
         if(hours >= 6 && hours < 9){
             return DayPart.MORNING;

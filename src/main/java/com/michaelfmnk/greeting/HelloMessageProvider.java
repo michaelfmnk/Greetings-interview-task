@@ -11,7 +11,7 @@ public class HelloMessageProvider {
     private final String city;
     private static Logger log = Logger.getLogger(HelloMessageProvider.class.getName());
 
-    HelloMessageProvider(String city){
+    public HelloMessageProvider(String city){
         this.city = StringUtils.capitalize(city);
     }
 
