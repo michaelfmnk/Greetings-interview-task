@@ -1,15 +1,18 @@
 package com.michaelfmnk.greeting;
 import org.apache.commons.cli.*;
+import org.apache.log4j.Logger;
 
 import java.util.TimeZone;
 
 public class Main {
+    private static Logger log = Logger.getLogger(Main.class.getName());
     private final static String PARAM_LANG = "language";
     private final static String PARAM_LANG_SHORT = "l";
     private final static String PARAM_TIMEZONE = "timezone";
     private final static String PARAM_TIMEZONE_SHORT = "tz";
 
     public static void main(String[] args) {
+        log.info("### START ###");
         CommandLine params;
         try {
             params = parseCommandLineParams(args);
@@ -20,11 +23,16 @@ public class Main {
 
         for (String city:
                 params.getArgs()) {
+            String lang = params.getOptionValue(PARAM_LANG_SHORT);
+            String timezone = params.getOptionValue(PARAM_TIMEZONE_SHORT);
+            log.info("accepted data: { city: " + city + ", lang: " + lang + ", tz: " + timezone + "}");
+
             HelloMessageProvider messageProvider = new HelloMessageProvider(city);
-            System.out.println(messageProvider.getMessage(params.getOptionValue(PARAM_LANG_SHORT), params.getOptionValue(PARAM_TIMEZONE_SHORT)));
+            System.out.println(messageProvider.getMessage(lang, timezone));
         }
 
 
+        log.info("### END ###");
     }
 
     static private CommandLine parseCommandLineParams(String[] args) throws ParseException{

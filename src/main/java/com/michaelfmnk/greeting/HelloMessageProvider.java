@@ -1,17 +1,18 @@
 package com.michaelfmnk.greeting;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.*;
 
 public class HelloMessageProvider {
     private final String city;
-    private Map<DayPart, Map<Locale, String>> messages;
+    private static Logger log = Logger.getLogger(HelloMessageProvider.class.getName());
 
     HelloMessageProvider(String city){
         this.city = StringUtils.capitalize(city);
-        messages = new HashMap<>();
     }
 
 
@@ -23,30 +24,27 @@ public class HelloMessageProvider {
             locale = Locale.valueOf(localeStr.toUpperCase());
         }catch(IllegalArgumentException e){
             locale = Locale.EN;
+            log.warn("language not found; english was selected");
         }
-
 
         try{
             dayPart = DayPart.getDayPart(TimeZone.getTimeZone(timeZoneStr.toUpperCase()));
         }catch (Exception e){
             dayPart = DayPart.getDayPart(city);
+            log.warn("time zone not found; searching time zone for city: "+ city);
         }
-
-
-        return getMessageFromResource(dayPart, locale);
-
+        return formMassage(getGreetingFromResource(dayPart, locale), city);
     }
 
-    private String getMessageFromResource(DayPart dayPart, Locale locale){
+    private String getGreetingFromResource(DayPart dayPart, Locale locale){
 
         String propFileName = "messages.properties";
 
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName)){
             Properties prop = new Properties();
 
-
             if (inputStream != null) {
-                prop.load(inputStream);
+                prop.load(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
             } else {
                 throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
             }
@@ -54,7 +52,7 @@ public class HelloMessageProvider {
             return prop.getProperty(resolveResourceName(dayPart, locale));
 
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
+            log.fatal("error occurred tyring to read properties file");
         }
         throw new RuntimeException();
     }
@@ -62,5 +60,13 @@ public class HelloMessageProvider {
     private String resolveResourceName(DayPart dayPart, Locale locale){
         String resourceName = "message." + dayPart.toString() + "." + locale.toString();
         return resourceName.toLowerCase();
+    }
+
+    private String formMassage(String greeting, String city){
+
+        city = city.replace("_", " ");
+        StringUtils.capitalize(city);
+        return greeting + ", "+city+"!";
+
     }
 }
