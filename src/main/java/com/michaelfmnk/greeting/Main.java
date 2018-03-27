@@ -1,6 +1,8 @@
 package com.michaelfmnk.greeting;
 import org.apache.commons.cli.*;
 
+import java.util.TimeZone;
+
 public class Main {
     private final static String PARAM_LANG = "language";
     private final static String PARAM_LANG_SHORT = "l";
@@ -16,12 +18,10 @@ public class Main {
             return;
         }
 
-        System.out.println(params.getOptionValue(PARAM_LANG_SHORT));
-        System.out.println(params.getOptionValue(PARAM_TIMEZONE));
         for (String city:
                 params.getArgs()) {
-            HelloMessageProvider message = new HelloMessageProvider(city);
-            System.out.println(message.getMessage(params.getOptionValue(PARAM_LANG_SHORT)));
+            HelloMessageProvider messageProvider = new HelloMessageProvider(city);
+            System.out.println(messageProvider.getMessage(params.getOptionValue(PARAM_LANG_SHORT), params.getOptionValue(PARAM_TIMEZONE_SHORT)));
         }
 
 
