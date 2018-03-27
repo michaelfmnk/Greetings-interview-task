@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,7 +13,7 @@ import static com.michaelfmnk.greeting.DayPart.*;
 import static com.michaelfmnk.greeting.Locale.EN;
 import static com.michaelfmnk.greeting.Locale.RU;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.runners.Parameterized.*;
+
 
 @RunWith(Parameterized.class)
 public class ResolveResourceNameTest {

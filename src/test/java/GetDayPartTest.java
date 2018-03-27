@@ -1,5 +1,5 @@
 import com.michaelfmnk.greeting.DayPart;
-import com.michaelfmnk.greeting.exception.HourNotPossibleException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
