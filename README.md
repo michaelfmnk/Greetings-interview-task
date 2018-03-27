@@ -11,17 +11,17 @@
 
 ### Пример логов:
 
-Main:14 - ### START ###
-Main:28 - accepted data: { city: new_york, lang: ru, tz: null}
-HelloMessageProvider:30 - language: ru
+Main:14 - ### START ###  
+Main:28 - accepted data: { city: new_york, lang: ru, tz: null}  
+HelloMessageProvider:30 - language: ru  
 HelloMessageProvider:41 - time zone not found; searching time zone for city: New_york
-HelloMessageProvider:44 - final message: Добрый день, New york!
-Main:35 - ### END ###
+HelloMessageProvider:44 - final message: Добрый день, New york!  
+Main:35 - ### END ###  
 
-Main:14 - ### START ###
-Main:28 - accepted data: { city: london, lang: null, tz: gmt+10}
-HelloMessageProvider:22 - language was not set; system default is en
-HelloMessageProvider:30 - language: en
-HelloMessageProvider:38 - dayPart in gmt+10 is NIGHT
-HelloMessageProvider:44 - final message: Good Night, London!
-Main:35 - ### END ###
+Main:14 - ### START ###  
+Main:28 - accepted data: { city: london, lang: null, tz: gmt+10}  
+HelloMessageProvider:22 - language was not set; system default is en  
+HelloMessageProvider:30 - language: en  
+HelloMessageProvider:38 - dayPart in gmt+10 is NIGHT  
+HelloMessageProvider:44 - final message: Good Night, London!  
+Main:35 - ### END ###  
