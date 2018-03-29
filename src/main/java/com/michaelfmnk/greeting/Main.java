@@ -1,6 +1,14 @@
 package com.michaelfmnk.greeting;
 import org.apache.commons.cli.*;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.Logger;
+import java.util.*;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 public class Main {
@@ -13,6 +21,7 @@ public class Main {
     public static void main(String[] args) {
         log.info("### START ###");
 
+
         CommandLine params;
         try {
             params = parseCommandLineParams(args);
@@ -21,15 +30,17 @@ public class Main {
             return;
         }
 
-        for (String city:
-                params.getArgs()) {
-            String lang = params.getOptionValue(PARAM_LANG_SHORT);
-            String timezone = params.getOptionValue(PARAM_TIMEZONE_SHORT);
-            log.info("accepted data: { city: " + city + ", lang: " + lang + ", tz: " + timezone + "}");
+        String city = String.join(" ", params.getArgs());
+        String lang = params.getOptionValue(PARAM_LANG_SHORT, "en");
+        String timezone = params.getOptionValue(PARAM_TIMEZONE_SHORT, "gmt");
+        Locale.setDefault(new Locale(lang));
 
-            HelloMessageProvider messageProvider = new HelloMessageProvider(city);
-            System.out.println(messageProvider.getMessage(lang, timezone));
-        }
+
+        log.info("accepted data: { city: " + city + ", lang: " + lang + ", tz: " + timezone + "}");
+
+        HelloMessageProvider messageProvider = new HelloMessageProvider(city);
+        System.out.println(messageProvider.getMessage(timezone));
+
 
 
         log.info("### END ###");

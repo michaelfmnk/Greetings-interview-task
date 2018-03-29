@@ -1,4 +1,4 @@
 package com.michaelfmnk.greeting.exception;
 
-public class CityNotFoundException extends Exception{
+public class CityNotFoundException extends RuntimeException{
 }
