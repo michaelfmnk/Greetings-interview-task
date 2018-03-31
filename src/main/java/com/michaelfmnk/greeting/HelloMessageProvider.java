@@ -1,17 +1,15 @@
 package com.michaelfmnk.greeting;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.Logger;
 
-import java.io.*;
-import java.nio.charset.Charset;
-import java.util.*;
+import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 public class HelloMessageProvider {
     private final String city;
     private static final String GREETING = "greetings";
-    ResourceBundle bundle;
+    private ResourceBundle bundle;
     private static Logger log = Logger.getLogger(HelloMessageProvider.class.getName());
 
     public HelloMessageProvider(String city){

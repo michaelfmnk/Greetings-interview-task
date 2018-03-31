@@ -1,14 +1,10 @@
 package com.michaelfmnk.greeting;
+
 import org.apache.commons.cli.*;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.Logger;
-import java.util.*;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 
 public class Main {
@@ -36,6 +32,10 @@ public class Main {
         Locale.setDefault(new Locale(lang));
 
 
+        if(StringUtils.isEmpty(city)){
+            System.err.println("You have to choose a city");
+            return;
+        }
         log.info("accepted data: { city: " + city + ", lang: " + lang + ", tz: " + timezone + "}");
 
         HelloMessageProvider messageProvider = new HelloMessageProvider(city);

@@ -3,9 +3,9 @@ package com.michaelfmnk.greeting;
 import com.michaelfmnk.greeting.exception.CityNotFoundException;
 import com.michaelfmnk.greeting.exception.HourNotPossibleException;
 import org.apache.log4j.Logger;
+import org.joda.time.DateTime;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public class TimeZoneUtils {
@@ -14,7 +14,7 @@ public class TimeZoneUtils {
 
     public static DayPart getDayPart(String city) throws CityNotFoundException{
         city = city.toLowerCase().replace(" ", "_");
-        Calendar calendar = new GregorianCalendar(TimeZone.getDefault());
+        Calendar calendar = DateTime.now().toGregorianCalendar();
         for (String id:
                 TimeZone.getAvailableIDs()) {
             if (id.toLowerCase().matches("(.*)(\\/)"+city+"$")){
@@ -29,7 +29,8 @@ public class TimeZoneUtils {
 
 
     public static DayPart getDayPart(TimeZone tz){
-        Calendar calendar = new GregorianCalendar(tz);
+        Calendar calendar = DateTime.now().toGregorianCalendar();
+        calendar.setTimeZone(tz);
         return getDayPart(calendar.get(Calendar.HOUR_OF_DAY));
     }
 

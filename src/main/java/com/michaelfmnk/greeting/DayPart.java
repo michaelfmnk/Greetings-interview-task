@@ -2,5 +2,5 @@ package com.michaelfmnk.greeting;
 
 
 public enum DayPart {
-    MORNING, DAYTIME, EVENING, NIGHT;
+    MORNING, DAYTIME, EVENING, NIGHT
 }
