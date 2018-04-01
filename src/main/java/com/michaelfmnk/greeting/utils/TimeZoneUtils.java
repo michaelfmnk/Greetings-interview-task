@@ -8,8 +8,9 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 public class TimeZoneUtils {
+    private static final String DEFAULT_TIMEZONE_ID = "Etc/GMT";
 
-    public static DayPart getDayPart(String city) throws CityNotFoundException{
+    public static DayPart getDayPart(String city, boolean fallback) throws CityNotFoundException{
         city = city.toLowerCase().replace(" ", "_");
         Calendar calendar = DateTime.now().toGregorianCalendar();
         for (String id:
@@ -21,7 +22,11 @@ public class TimeZoneUtils {
                 return getDayPart(hours);
             }
         }
-        throw new CityNotFoundException();
+        if (fallback) {
+            return getDayPart(TimeZone.getTimeZone(DEFAULT_TIMEZONE_ID));
+        } else{
+            throw new CityNotFoundException();
+        }
     }
 
 

@@ -11,17 +11,23 @@
 
 ### Примеры логов:
 
-Main:14 - ### START ###  
-Main:28 - accepted data: { city: new_york, lang: ru, tz: null}  
-HelloMessageProvider:30 - language: ru  
-HelloMessageProvider:41 - time zone not found; searching time zone for city: New_york
-HelloMessageProvider:44 - final message: Добрый день, New york!  
-Main:35 - ### END ###  
 
-Main:14 - ### START ###  
-Main:28 - accepted data: { city: london, lang: null, tz: gmt+10}  
-HelloMessageProvider:22 - language was not set; system default is en  
-HelloMessageProvider:30 - language: en  
-HelloMessageProvider:38 - dayPart in gmt+10 is NIGHT  
-HelloMessageProvider:44 - final message: Good Night, London!  
-Main:35 - ### END ###  
+Main:19 - ### START ###  
+Main:42 - accepted data: { city: new york, lang: en, tz: hthtt}  
+utils.HelloMessageProvider:28 - getting datPart by city name: New York; timezone is not valid  
+utils.HelloMessageProvider:35 - final message: Good Day, New York!  
+Main:46 - ### END ###  
+
+Main:19 - ### START ###  
+Main:42 - accepted data: { city: kiev, lang: ua, tz: null}  
+utils.HelloMessageProvider:28 - getting datPart by city name: Kiev; timezone is not valid  
+utils.HelloMessageProvider:35 - final message: Доброго дня, Kiev!  
+Main:46 - ### END ###  
+
+Main:19 - ### START ###  
+Main:42 - accepted data: { city: kiev, lang: en, tz: Etc/GMT+3}  
+utils.HelloMessageProvider:31 - getting dayPart by provided timezone: Etc/GMT+3  
+utils.HelloMessageProvider:35 - final message: Good Day, Kiev!  
+Main:46 - ### END ###  
+
+

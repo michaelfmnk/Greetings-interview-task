@@ -9,7 +9,7 @@ import java.util.TimeZone;
 
 public class HelloMessageProvider {
     private final String city;
-    private final TimeZone timeZone;
+    private final String timeZone;
 
     private static final String GREETING = "greetings";
     private ResourceBundle bundle;
@@ -18,17 +18,17 @@ public class HelloMessageProvider {
 
     public HelloMessageProvider(String city, String timezone){
         this.city = WordUtils.capitalize(city);
-        this.timeZone = timezone==null ? null : TimeZone.getTimeZone(timezone.toUpperCase());
+        this.timeZone = timezone;
     }
 
     public String getMessage(){
         DayPart dayPart;
-        if (timeZone == null) {
-            log.info("getting datPart by city name: "+city+"; timezone was not given");
-            dayPart = TimeZoneUtils.getDayPart(city);
+        if (isTimeZoneValid(timeZone)) {
+            log.info("getting dayPart by provided timezone: " + timeZone);
+            dayPart = TimeZoneUtils.getDayPart(TimeZone.getTimeZone(timeZone));
         } else {
-            log.info("getting dayPart by provided timezone: " + timeZone.getDisplayName());
-            dayPart = TimeZoneUtils.getDayPart(timeZone);
+            log.info("getting datPart by city name: "+city+"; timezone is not valid");
+            dayPart = TimeZoneUtils.getDayPart(city, true);
         }
         String message = createMessage(dayPart);
         log.info("final message: " + message);
@@ -39,5 +39,16 @@ public class HelloMessageProvider {
         bundle = ResourceBundle.getBundle(GREETING, new UTF8Control());
         String resName = "greeting." + dayPart.toString().toLowerCase();
         return bundle.getString(resName) + ", " + city + "!";
+    }
+
+    private boolean isTimeZoneValid(String timezone){
+        if (timezone==null) return false;
+        for (String id:
+                TimeZone.getAvailableIDs()) {
+            if (id.toLowerCase().equals(timezone.toLowerCase())){
+                return true;
+            }
+        }
+        return false;
     }
 }

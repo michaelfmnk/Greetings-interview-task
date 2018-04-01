@@ -59,7 +59,7 @@ public class TZUtilsTest {
 
     @Test
     public void dayPartByCityNameTest(){
-        DayPart dayPart = TimeZoneUtils.getDayPart(city);
+        DayPart dayPart = TimeZoneUtils.getDayPart(city, false);
         assertEquals(this.dayPart, dayPart);
     }
 
