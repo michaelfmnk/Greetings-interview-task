@@ -1,5 +1,6 @@
 package com.michaelfmnk.greeting;
 
+import com.michaelfmnk.greeting.utils.HelloMessageProvider;
 import org.apache.commons.cli.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -23,26 +24,25 @@ public class Main {
             params = parseCommandLineParams(args);
         } catch (ParseException e) {
             e.printStackTrace();
+            log.fatal("error while parsing commands");
+            log.info("### END ###");
             return;
         }
 
         String city = String.join(" ", params.getArgs());
         String lang = params.getOptionValue(PARAM_LANG_SHORT, "en");
-        String timezone = params.getOptionValue(PARAM_TIMEZONE_SHORT, "gmt");
+        String timezone = params.getOptionValue(PARAM_TIMEZONE_SHORT);
         Locale.setDefault(new Locale(lang));
 
 
         if(StringUtils.isEmpty(city)){
             System.err.println("You have to choose a city");
-            return;
+            log.error("no city was given");
+        }else{
+            log.info("accepted data: { city: " + city + ", lang: " + lang + ", tz: " + timezone + "}");
+            HelloMessageProvider messageProvider = new HelloMessageProvider(city, timezone);
+            System.out.println(messageProvider.getMessage());
         }
-        log.info("accepted data: { city: " + city + ", lang: " + lang + ", tz: " + timezone + "}");
-
-        HelloMessageProvider messageProvider = new HelloMessageProvider(city);
-        System.out.println(messageProvider.getMessage(timezone));
-
-
-
         log.info("### END ###");
     }
 

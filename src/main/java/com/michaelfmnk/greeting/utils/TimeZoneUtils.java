@@ -1,16 +1,13 @@
-package com.michaelfmnk.greeting;
+package com.michaelfmnk.greeting.utils;
 
 import com.michaelfmnk.greeting.exception.CityNotFoundException;
 import com.michaelfmnk.greeting.exception.HourNotPossibleException;
-import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 
 import java.util.Calendar;
 import java.util.TimeZone;
 
 public class TimeZoneUtils {
-    private static Logger log = Logger.getLogger(TimeZoneUtils.class.getName());
-
 
     public static DayPart getDayPart(String city) throws CityNotFoundException{
         city = city.toLowerCase().replace(" ", "_");

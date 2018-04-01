@@ -1,5 +1,5 @@
-import com.michaelfmnk.greeting.DayPart;
-import com.michaelfmnk.greeting.TimeZoneUtils;
+import com.michaelfmnk.greeting.utils.DayPart;
+import com.michaelfmnk.greeting.utils.TimeZoneUtils;
 import org.joda.time.DateTimeUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.TimeZone;
 
-import static com.michaelfmnk.greeting.DayPart.*;
+import static com.michaelfmnk.greeting.utils.DayPart.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 

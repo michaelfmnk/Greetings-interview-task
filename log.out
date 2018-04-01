@@ -1,0 +1,5 @@
+2018-04-01 17:17:24,222  INFO com.michaelfmnk.greeting.Main:19 - ### START ###
+2018-04-01 17:17:24,244  INFO com.michaelfmnk.greeting.Main:42 - accepted data: { city: new york, lang: en, tz: hthtt}
+2018-04-01 17:17:24,249  INFO com.michaelfmnk.greeting.utils.HelloMessageProvider:29 - getting dayPart by provided timezone: Greenwich Mean Time
+2018-04-01 17:17:24,307  INFO com.michaelfmnk.greeting.utils.HelloMessageProvider:33 - final message: Good Day, New York!
+2018-04-01 17:17:24,307  INFO com.michaelfmnk.greeting.Main:46 - ### END ###

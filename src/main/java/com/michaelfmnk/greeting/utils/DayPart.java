@@ -1,4 +1,4 @@
-package com.michaelfmnk.greeting;
+package com.michaelfmnk.greeting.utils;
 
 
 public enum DayPart {
