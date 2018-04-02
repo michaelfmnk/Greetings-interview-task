@@ -16,18 +16,18 @@ public class HelloMessageProvider {
 
     private static Logger log = Logger.getLogger(HelloMessageProvider.class.getName());
 
-    public HelloMessageProvider(String city, String timezone){
-        this.city = WordUtils.capitalize(city);
+    public HelloMessageProvider(String city, String timezone) {
+        this.city = WordUtils.capitalize(city.toLowerCase());
         this.timeZone = timezone;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         DayPart dayPart;
         if (isTimeZoneValid(timeZone)) {
             log.info("getting dayPart by provided timezone: " + timeZone);
             dayPart = TimeZoneUtils.getDayPart(TimeZone.getTimeZone(timeZone));
         } else {
-            log.info("getting datPart by city name: "+city+"; timezone is not valid");
+            log.info("getting datPart by city name: " + city + "; timezone is not valid");
             dayPart = TimeZoneUtils.getDayPart(city, true);
         }
         String message = createMessage(dayPart);
@@ -41,11 +41,11 @@ public class HelloMessageProvider {
         return bundle.getString(resName) + ", " + city + "!";
     }
 
-    private boolean isTimeZoneValid(String timezone){
-        if (timezone==null) return false;
-        for (String id:
+    private boolean isTimeZoneValid(String timezone) {
+        if (timezone == null) return false;
+        for (String id :
                 TimeZone.getAvailableIDs()) {
-            if (id.toLowerCase().equals(timezone.toLowerCase())){
+            if (id.toLowerCase().equals(timezone.toLowerCase())) {
                 return true;
             }
         }
